@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "neo4j-fact": {
+      "type": "stdio",
+      "command": "/Users/joe/Projects/final_fact/scripts/run_neo4j_mcp_fact.sh",
+      "args": [],
+      "env": {
+        "AWS_PROFILE": "unify-old",
+        "AWS_REGION": "us-east-1",
+        "NEO4J_FACT_SECRET_ID": "legal-fact/neo4j-credentials",
+        "NEO4J_READ_ONLY": "true"
+      }
+    }
+  }
+}
+
