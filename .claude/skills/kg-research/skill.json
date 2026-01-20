@@ -1,0 +1,58 @@
+{
+  "name": "kg-research",
+  "description": "Research legal treatises and cross-examination strategies from Neo4j Knowledge Graph",
+  "version": "1.0.0",
+  "author": "final_fact pipeline",
+  "tags": ["research", "treatise", "cross-examination", "strategy", "neo4j"],
+  "category": "legal-research",
+  "agents": ["kg-researcher"],
+  "parameters": {
+    "query_type": {
+      "type": "string",
+      "description": "Type of query: 'technique', 'impeachment', 'evidence-rule', 'sequence', 'example'",
+      "required": false,
+      "default": "technique"
+    },
+    "search_terms": {
+      "type": "string",
+      "description": "Search terms for full-text query (e.g., 'impeachment omission', 'loop technique')",
+      "required": true
+    },
+    "topic": {
+      "type": "string",
+      "description": "Specific topic or technique to research",
+      "required": false
+    },
+    "include_examples": {
+      "type": "boolean",
+      "description": "Include practical examples and sample questions",
+      "required": false,
+      "default": true
+    }
+  },
+  "output": {
+    "format": "markdown",
+    "includes": [
+      "Strategic principle with page citations",
+      "Practical application guidance",
+      "Sample questions (if applicable)",
+      "Cross-references to related concepts",
+      "Complete treatise excerpts"
+    ]
+  },
+  "examples": [
+    {
+      "description": "Research impeachment by omission",
+      "command": "kg-research --search-terms 'impeachment omission professional duty' --include-examples true"
+    },
+    {
+      "description": "Find loop technique guidance",
+      "command": "kg-research --search-terms 'loop technique repetition emphasis' --topic 'Loop Technique'"
+    },
+    {
+      "description": "Research sequencing strategies",
+      "command": "kg-research --search-terms 'sequencing safe risky chapter method' --query-type 'sequence'"
+    }
+  ],
+  "script": "run.py"
+}

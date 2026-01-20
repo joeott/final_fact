@@ -1,0 +1,82 @@
+{
+  "name": "fact-research",
+  "description": "Research case documents and exhibits from Neo4j FACT Graph for deposition preparation",
+  "version": "1.0.0",
+  "author": "final_fact pipeline",
+  "tags": ["research", "exhibits", "case-documents", "impeachment", "neo4j"],
+  "category": "case-research",
+  "agents": ["fact-researcher"],
+  "parameters": {
+    "case_name": {
+      "type": "string",
+      "description": "Case name (e.g., 'Jostes_depo', 'Kunda v. Smith')",
+      "required": true
+    },
+    "project_uuid": {
+      "type": "string",
+      "description": "Project UUID (auto-determined from case_name if not provided)",
+      "required": false
+    },
+    "search_terms": {
+      "type": "string",
+      "description": "Search terms for full-text search across chunks",
+      "required": false
+    },
+    "exhibit_name": {
+      "type": "string",
+      "description": "Specific exhibit to search (e.g., 'Exhibit 1 - acuity answers')",
+      "required": false
+    },
+    "entity_name": {
+      "type": "string",
+      "description": "Track mentions of specific person/organization",
+      "required": false
+    },
+    "find_contradictions": {
+      "type": "boolean",
+      "description": "Search for contradictory statements on topic",
+      "required": false,
+      "default": false
+    },
+    "build_timeline": {
+      "type": "boolean",
+      "description": "Extract timeline of events from date entities",
+      "required": false,
+      "default": false
+    }
+  },
+  "output": {
+    "format": "markdown",
+    "includes": [
+      "Exhibit references with page numbers",
+      "Exact quotes from documents",
+      "Cross-references to related exhibits",
+      "Timeline construction (if requested)",
+      "Entity tracking (if requested)",
+      "Contradiction analysis (if requested)"
+    ]
+  },
+  "examples": [
+    {
+      "description": "Search for fire suppression mentions",
+      "command": "fact-research --case-name 'Jostes_depo' --search-terms 'fire suppression'"
+    },
+    {
+      "description": "Get all content from Exhibit 7",
+      "command": "fact-research --case-name 'Jostes_depo' --exhibit-name 'Exhibit 7 - Initial Report, Reserves'"
+    },
+    {
+      "description": "Find contradictions on coverage",
+      "command": "fact-research --case-name 'Jostes_depo' --search-terms 'coverage' --find-contradictions true"
+    },
+    {
+      "description": "Build case timeline",
+      "command": "fact-research --case-name 'Jostes_depo' --build-timeline true"
+    },
+    {
+      "description": "Track all mentions of Dave Jostes",
+      "command": "fact-research --case-name 'Jostes_depo' --entity-name 'Dave Jostes'"
+    }
+  ],
+  "script": "run.py"
+}
